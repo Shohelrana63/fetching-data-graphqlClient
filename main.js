@@ -2,15 +2,15 @@ const continentSelect = document.getElementById("continent-select")
 
 queryFetch(`
         query{
-            continents{
+            countries{
                 name
                 code
             }
         }
     `)
     .then(data => {
-        console.log(data.data.continents);
-        data.data.continents.forEach(continent => {
+        console.log(data.data.countries);
+        data.data.countries.forEach(continent => {
             const option = document.createElement('option')
             option.value = continent.code;
             option.innerText = continent.name;
