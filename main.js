@@ -1,16 +1,17 @@
 const continentSelect = document.getElementById("continent-select")
+const countryList = document.getElementById('countries-list')
 
 queryFetch(`
         query{
-            countries{
+            continents {
                 name
                 code
             }
         }
     `)
     .then(data => {
-        console.log(data.data.countries);
-        data.data.countries.forEach(continent => {
+        console.log(data.data.continents);
+        data.data.continents.forEach(continent => {
             const option = document.createElement('option')
             option.value = continent.code;
             option.innerText = continent.name;
@@ -21,11 +22,17 @@ queryFetch(`
 continentSelect.addEventListener("change", async e => {
     const continentCode = e.target.value
     const countries = await getContinentCountries(continentCode)
+    countryList.innerHTML = ''
+    countries.forEach(country => {
+        const element = document.createElement('li')
+        element.innerText = country.name
+        countryList.append(element)
+    })
 })
 
 function getContinentCountries(continentCode) {
     return queryFetch(`
-        query getCountries($code: String){
+        query getCountries($code: ID!){
             continent(code: $code){
                 countries{
                     name
@@ -34,6 +41,7 @@ function getContinentCountries(continentCode) {
         }
         `, { code: continentCode }).then(data => {
         console.log(data);
+        return data.data.continent.countries
     })
 }
 
@@ -49,3 +57,4 @@ function queryFetch(query, variables) {
         })
     }).then(response => response.json())
 }
+

@@ -5,19 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="style.css">
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <title>Country List</title>
 </head>
 
 <body>
     <section class="container">
-        <div class="align-items-center my-5">
-            <select class="custom-select text-center" id="continent-select">
+        <h1>Country List</h1>
+        <div class="my-5">
+            <select class="custom-select" id="continent-select">
                 <option selected hidden>Select a Continent</option>
             </select>
+            <div class="py-3 countries ">
+                <div class="demo" id="countries-list"></div>
+            </div>
         </div>
     </section>
 
